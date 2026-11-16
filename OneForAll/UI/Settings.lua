@@ -229,6 +229,39 @@ local function createSettingsPanel(parent)
     refresh()
     gen.rowMax = math.min(gen.rowMax, gen.y - 34); gen:nextRow()
   end
+
+  local box = gen.box
+  local ll = FLT.NewFS(box, nil, "OVERLAY", "GameFontHighlight"); ll:SetPoint("TOPLEFT", 14, gen.y - 6); ll:SetText("Quest Window Mode")
+  local pick = UI.GoldButton(box, "", 200, 24, nil, 12); pick:SetPoint("TOPLEFT", 190, gen.y - 2)
+  local function currentMode() return OFA_Config and OFA_Config.socialMode or "Disabled" end
+  local function refreshMode()
+    local cur = currentMode()
+    pick:SetLabel(cur .. "  |cff9d9d9dv|r")
+  end
+  pick:SetScript("OnClick", function(btn)
+    local options = {
+      { key = "Disabled", label = "Disabled" },
+      { key = "Quest Window", label = "Quest Window" }
+    }
+    UI.OpenDropDown(btn, options, currentMode(), function(key)
+      if key == currentMode() then return end
+      OFA_Config.socialMode = key
+      refreshMode()
+      if OFA.EvaluateSubZoneQuests then
+        OFA:EvaluateSubZoneQuests()
+      end
+    end)
+  end)
+  pick:SetScript("OnEnter", function(btn)
+    GameTooltip:SetOwner(btn, "ANCHOR_RIGHT")
+    GameTooltip:AddLine("Quest Window Mode", 1, 0.82, 0)
+    GameTooltip:AddLine("Choose whether OneForAll displays the floating sub-zone quest tracker.", 1, 1, 1, true)
+    GameTooltip:Show()
+  end)
+  pick:SetScript("OnLeave", function() GameTooltip:Hide() end)
+  refreshers[#refreshers + 1] = refreshMode
+  refreshMode()
+  gen.rowMax = math.min(gen.rowMax, gen.y - 34); gen:nextRow()
   gen:finish()
 
   -- "Popups & alerts" moved to Quality of Life (5.6.8, user 22.10.)
