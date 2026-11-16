@@ -6,7 +6,7 @@
 ## Version: 6.2.9
 ## IconTexture: Interface\AddOns\OneForAll\Assets\minimap_icon
 ## OptionalDeps: Baganator
-## SavedVariables: OneForAllDB, ForeverCompanionDB, ForeverLibraryTrackerDB
+## SavedVariables: OneForAllDB, ForeverCompanionDB, ForeverLibraryTrackerDB, OFA_Config
 ## SavedVariablesPerCharacter: OneForAllCharDB, ForeverCompanionCharDB
 
 Locales\Locale.lua
@@ -70,11 +70,11 @@ Data\Dungeons\ShapersTerrace.lua
 Data\Dungeons\BarrowDeeps.lua
 Data\Dungeons\HyjalSummit.lua
 Data\Dungeons\OnyxiasLair.lua
-Data\DungeonQuestChains.lua
-Data\DungeonKeys.lua
-Data\RaidAttunements.lua
-Data\DungeonDropChance.lua
-Data\BossInfo.lua
+DungeonQuestChains.lua
+DungeonKeys.lua
+RaidAttunements.lua
+DungeonDropChance.lua
+BossInfo.lua
 Data\HunterPets.lua
 Data\HunterPetTames.lua
 Data\TrainerSpells.lua
@@ -101,6 +101,13 @@ Data\Disenchant.lua
 Data\Enchants.lua
 DungeonData.lua
 Core.lua
+
+# --- New MVP Files Added Here ---
+config.lua
+subzones.lua
+ui_questwindow.lua
+# --------------------------------
+
 QoL.lua
 Flights.lua
 QuestMarks.lua
